@@ -27,7 +27,8 @@ class Profile extends Component {
       showUpcoming: false,
       showCompleted: false,
       showTrash: false,
-      email:this.props.auth
+      email:this.props.auth,
+      trash : []
 
 
     };
@@ -104,6 +105,8 @@ class Profile extends Component {
                       padding: 0,
                     }}
                   >
+                <div className ='sideMinue'>
+
                     <Menu
                       onClick={this.handleClick}
                     //   style={{ width: 260}}
@@ -141,14 +144,15 @@ class Profile extends Component {
                         Trash
                       </Menu.Item>
                     </Menu>
+                    </div>
                   </Sider>
                 </Layout>
               </Sider>
               <Content style={{ padding: "0 24px", minHeight: 280 }}>
                 {this.state.showProfile ? <ProfileInfo /> : null}
-                {this.state.showUpcoming ? <UpComAppoints /> : null}
+                {this.state.showUpcoming ? <UpComAppoints trash = {this.state.trash}/> : null}
                 {this.state.showCompleted ? <FinishedAppoints /> : null}
-                {this.state.showTrash ? <Trash /> : null}
+                {this.state.showTrash ? <Trash trash = {this.state.trash}/> : null}
               </Content>
             </Layout>
           </Content>

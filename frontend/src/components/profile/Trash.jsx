@@ -1,6 +1,5 @@
 import { Table, Row, Divider } from "antd";
-import React, { useState, useEffect, Component } from "react";
-import AppointsCard from './AppointmentsCard/AppointsCard'
+import React, {  Component } from "react";
 const columns = [
   {
     title: "Appointments",
@@ -18,40 +17,15 @@ const columns = [
 class Trash extends Component {
   constructor(props) {
     super(props);
+    console.log('TR',props.trash)
     this.state = {
       appointments:this.props.array
     };
   }
-
-  
-  // const [data, setData] = useState("");
-  // useEffect(() => {
-  //   TrashAppointments()
-  //     .then((response) => {
-  //       setData(response.data);
-  //     })
-  //     .catch((error) => {
-  //       console.log("API ERROR:", error);
-  //     });
-  // }, []);
-  // function onChange(pagination, filters, sorter, extra) {
-  //   console.log("params", pagination, filters, sorter, extra);
-  // }
   
 render (){
   console.log("delete11111",this.props.array)
-  // const cards =this.props.array.map((element, index) => {
-  //   return (
-  //     <Table
-  //         className="TMtable"
-  //         size="middle"
-  //         style={{textAlign:"center"}}
-  //          columns={columns}
-  //          dataSource={element}
-  //         // onChange={onChange}
-  //       />
-  //   );
-  // });
+ 
   return (
     <div>
       <Row>
@@ -66,7 +40,6 @@ render (){
           style={{textAlign:"center"}}
            columns={columns}
            dataSource={this.props.trash}
-          // onChange={onChange}
         />
       </div>
     </div>

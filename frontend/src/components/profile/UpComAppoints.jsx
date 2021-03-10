@@ -1,36 +1,14 @@
-import React, { Component, useState , useEffect } from "react";
+import React, {  useState  } from "react";
 import { gettAllAppointment , currentUser} from "../API/Api";
 import Add_appointment from "../forms/Add_appointment";
-import About from "../mainComponents/About";
 import AppointsCard from "./AppointmentsCard/AppointsCard";
-import Track from "./AppointmentsCard/Track";
-import StarRating from "./AppointmentsCard/StarRating";
 import { Row, Col , Divider, Empty} from "antd";
 
 
 
-function UpComAppoints() {
+function UpComAppoints(props) {
   let [ ComAppoints,setComAppoints] = useState('');
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     Appointments:[]
-  //   };
-  // }
 
-  // componentDidMount() {
-
-  //   gettAllAppointment(currentUser._id)
-  //     .then((response) => {
-  //       console.log("DATA: ", response.data);
-  //       this.setState({ Appointments: response.data.app_id});
-  //     })
-  //     .catch((err) => {
-  //       console.log("ERR: ", err);
-  //     });
-  // }
-
-  // useEffect(() => {
       gettAllAppointment(currentUser._id)
       .then((response) => {
         console.log("DATA: ", response.data);
@@ -41,12 +19,6 @@ function UpComAppoints() {
       .catch((err) => {
         console.log("ERR: ", err);
       });
-// }, []);
-
-  // render(){
-  //   console.log(currentUser._id)
-  //   console.log(this.state.Appointments)
-
 
 
        
@@ -75,13 +47,12 @@ function UpComAppoints() {
           data={item.date}
           time={item.time}
           item={item}
+          trash= {props.trash}
           />
         );
       })} 
         </Row>
 
-        {/* <Track/> */}
-        {/* <StarRating/> */}
 
       </div>
     );

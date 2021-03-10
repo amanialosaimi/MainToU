@@ -1,11 +1,7 @@
-import React, { Component, useState } from "react";
-import { Card, Col, Row, Divider, Tooltip , Popconfirm} from "antd";
+import React, { Component } from "react";
+import { Card, Col, Row,  Tooltip , Popconfirm} from "antd";
 import { deleteAppointment } from "../../API/Api";
-import { Route, Link } from "react-router-dom";
-import Add_appointment from "../../forms/Add_appointment";
-import Star from "./StarRating";
-import Track from "./Track";
-import Trash from '../Trash'
+
 import {
   EditOutlined,
   NodeIndexOutlined,
@@ -30,23 +26,24 @@ class AppointsCard extends Component {
 
     this.setState({ order: [...this.state.order, info] });
   
-    // console.log("hi from order", info)
+    console.log("hi from order", info)
   
   }
    handleDelete = (key) => {
-    //datasource.title
-    console.log(key)
+  //  console.log(key)
     // setData(dataSource.filter((item) => item._id !== key));
-    console.log("hiiii", key._id);
+    //console.log("hiiii", key._id);
     // let arr=[]
     // arr.push(key)
+    this.props.trash.push(key)
+    console.log(this.props.trash)
     var joined = this.state.Appointments.push(key);
     this.setState({ Appointments: joined })
-    console.log(this.state.Appointments)
-
+    //console.log(this.state.Appointments)
+    
     deleteAppointment(key._id)
       .then((response) => {
-        console.log("Deleted Succcfully !!!!!!!!", response);
+       console.log("Deleted Succcfully !!!!!!!!", response);
       })
       .catch((error) => {
         console.log("API ERROR:", error);
@@ -72,7 +69,7 @@ class AppointsCard extends Component {
                     <NodeIndexOutlined
                       className="appointsIco"
                       key="track"
-                      // onClick={setshowTrack(true)}
+                      //onClick={setshowTrack(true)}
                     />
                     {/* {showTrack && <Track />} */}
                   </Tooltip>,

@@ -139,7 +139,6 @@ img {
  font-size: 17px;
  border-bottom: none;
  color: #E4BA4E;
- margin: 60px 0 0 0;
  
 }
 .ant-menu-horizontal>.ant-menu-item-selected a {
@@ -433,4 +432,14 @@ img {
   justify-content: center;
   align-items: center;
 
+}
+.sideMinue .ant-menu{
+    /* nav menu */
+  background-color: rgba(255, 255, 255, 0);
+  font-size: 17px;
+  border-bottom: none;
+  color: #E4BA4E;
+  margin: 60px 0 0 0;
+  
+ 
 }

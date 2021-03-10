@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Form, Input, Button, Table, Col, Row, Divider, Space } from "antd";
 import { getClientInfo, updateClientInfo , currentUser} from "../API/Api";
 import { EditOutlined, TeamOutlined } from "@ant-design/icons";
-import RegBG from "../../images/RegBg.svg";
 const { Column, ColumnGroup } = Table;
 export default class ProfileInfo extends Component {
   constructor(props) {
@@ -86,13 +85,7 @@ export default class ProfileInfo extends Component {
           </Divider>
         </Row>
         <div className="profileInfo "
-        // style={{
-        //   background: `url(${RegBG})`,
-        //   width: "50%",
-        //   height: "80%",
-        //   backgroundRepeat: "no-repeat",
-        //   color: "white",
-        // }}
+     
         >
           <div className="profform" >
           <Divider><TeamOutlined className="profIco"/></Divider>
