@@ -46,34 +46,34 @@ let currentUser= ""
   },
 };
 const getAllmintsCompany = () => {
-  return axios.get(`${URL}/api/Clint/company`);
+  return axios.get(`${URL}/api/Admin/company`);
 };
 const newMintsCompany = (info) => {
-  return axios.post(`${URL}/api/Clint/company`, info);
+  return axios.post(`${URL}/api/Admin/company`, info);
 };
 const deleteCompany = (info) => {
-  return axios.delete(`${URL}/api/Clint/company/${info}`);
+  return axios.delete(`${URL}/api/Admin/company/${info}`);
 }
 const editCompany=(info,id)=>{
-  return axios.put(`${URL}/api/Clint/company/${id}`,info)
+  return axios.put(`${URL}/api/Admin/company/${id}`,info)
 }
 const addNewAppointment=(info)=>{
   return axios.post(`${URL}/api/Appoints/appointments/`,info)
 }
 const getAllTechMan = () => {
-  return axios.get(`${URL}/api/TechMan/TechMan`);
+  return axios.get(`${URL}/api/Admin/TechMan`);
 };
 const newTechMan = (info) => {
-  return axios.post(`${URL}/api/TechMan/TechMan`, info);
+  return axios.post(`${URL}/api/Admin/TechMan`, info);
 };
 const getClientInfo = (id) => {
   return axios.get(`${URL}/api/Clint/Clint/${id}`);
 };
 const deleteTechMan=(info)=>{
-return axios.delete(`${URL}/api/TechMan/TechMan/${info}`);
+return axios.delete(`${URL}/api/Admin/TechMan/${info}`);
 }
 const editTechMan=(info,id)=>{
-return axios.put(`${URL}/api/TechMan/TechMan/${id}`,info)
+return axios.put(`${URL}/api/Admin/TechMan/${id}`,info)
 }
 const TrashAppointments =(id)=>{
   return axios.get(`${URL}/api/Appoints/${id}/TrashAppointments`)

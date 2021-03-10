@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { Component, useState , useEffect } from "react";
 import { gettAllAppointment , currentUser} from "../API/Api";
 import Add_appointment from "../forms/Add_appointment";
 import About from "../mainComponents/About";
@@ -9,29 +9,49 @@ import { Row, Col , Divider, Empty} from "antd";
 
 
 
-class UpComAppoints extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      Appointments:[]
-    };
-  }
-  componentDidMount() {
+function UpComAppoints() {
+  let [ ComAppoints,setComAppoints] = useState('');
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     Appointments:[]
+  //   };
+  // }
 
-    gettAllAppointment(currentUser._id)
+  // componentDidMount() {
+
+  //   gettAllAppointment(currentUser._id)
+  //     .then((response) => {
+  //       console.log("DATA: ", response.data);
+  //       this.setState({ Appointments: response.data.app_id});
+  //     })
+  //     .catch((err) => {
+  //       console.log("ERR: ", err);
+  //     });
+  // }
+
+  // useEffect(() => {
+      gettAllAppointment(currentUser._id)
       .then((response) => {
         console.log("DATA: ", response.data);
-        this.setState({ Appointments: response.data.app_id});
+        // this.setState({ Appointments: response.data.app_id});
+        setComAppoints(response.data.app_id)
+        console.log("ComAppoints",ComAppoints)
       })
       .catch((err) => {
         console.log("ERR: ", err);
       });
-  }
-  render(){
-    console.log(currentUser._id)
-    console.log(this.state.Appointments)
+// }, []);
 
+  // render(){
+  //   console.log(currentUser._id)
+  //   console.log(this.state.Appointments)
+
+
+
+       
     return (
+      
       <div>
         <div>
           <Row>
@@ -47,14 +67,14 @@ class UpComAppoints extends Component {
           </Row>
         <Row className="emptyCont">
 
-          {this.state.Appointments.length==0 ? <Empty description={<h2>No Appointments yet</h2>}/> : this.state.Appointments.map((item, index) => {
+          {ComAppoints.length==0 ? <Empty description={<h2>No Appointments yet</h2>}/> : ComAppoints.map((item, index) => {
         return (
           <AppointsCard
           title={item.title}
           description={item.description}
           data={item.date}
           time={item.time}
-          delete={item}
+          item={item}
           />
         );
       })} 
@@ -65,7 +85,7 @@ class UpComAppoints extends Component {
 
       </div>
     );
-  }
+  // }
 }
 
 export default UpComAppoints;

@@ -43,23 +43,21 @@ export default class ProfileInfo extends Component {
 
     const info = this.state.clientInfo;
     const newInfo = {
-      companyName: this.state.companyName
-        ? this.state.companyName
-        : info.companyName,
+      companyName: this.state.companyName ? this.state.companyName: info.companyName,
       address: this.state.address ? this.state.address : info.address,
       email: this.state.email ? this.state.email : info.email,
-      phoneNumber: this.state.phoneNumber
-        ? this.state.phoneNumber
-        : info.phoneNumber,
+      phoneNumber: this.state.phoneNumber ? this.state.phoneNumber : info.phoneNumber,
     };
     updateClientInfo(newInfo, currentUser._id)
       .then((response) => {
         console.log("DATA: ", response.data);
+        
       })
       .catch((err) => {
         console.log("ERR: ", err);
       });
 
+      
   };
   Editname = () => {
     console.log();
@@ -99,9 +97,11 @@ export default class ProfileInfo extends Component {
           <div className="profform" >
           <Divider><TeamOutlined className="profIco"/></Divider>
         <Form name="nest-messages" style={{ width: 300 }}>
+
           <Form.Item name="companyName" label={<h4><b>Company name:</b></h4>}>
-          <Row>
-            {this.state.clientInfo.companyName}
+            <Row>
+            {this.state.companyName ? this.state.companyName: this.state.clientInfo.companyName}
+
             {this.state.showButton ? (
               <Col className="gutter-row" span={8}>
               
@@ -120,10 +120,12 @@ export default class ProfileInfo extends Component {
             ) : null}
             </Row>
           </Form.Item>
+
           <Divider/>
           <Form.Item name="address" label={<h4><b>Address:</b></h4>}>
-            <Row>
-            {this.state.clientInfo.address}
+           <Row>
+            {this.state.address ? this.state.address: this.state.clientInfo.address}
+
             {this.state.showButton ? (
               <Col className="gutter-row" span={8}>
               <EditOutlined onClick={this.Editaddress}></EditOutlined>
@@ -140,10 +142,12 @@ export default class ProfileInfo extends Component {
             ) : null}
             </Row>
           </Form.Item>
-          <Divider/>
+
+           <Divider/>
           <Form.Item name="email" label={<h4><b>Email:</b></h4>}>
             <Row>
-            {this.state.clientInfo.email}
+            {this.state.email ? this.state.email: this.state.clientInfo.email}
+
             {this.state.showButton ? (
               <Col className="gutter-row" span={8}>
               <EditOutlined onClick={this.Editemail}></EditOutlined>
@@ -160,10 +164,11 @@ export default class ProfileInfo extends Component {
             ) : null}
             </Row>
           </Form.Item>
+
           <Divider/>
           <Form.Item name="phoneNumber" label={<h4><b>Phone Number:</b></h4>}>
             <Row>
-            {this.state.clientInfo.phoneNumber}
+            {this.state.phoneNumber ? this.state.phoneNumber: this.state.clientInfo.phoneNumber}
             {this.state.showButton ? (
               <Col className="gutter-row" span={8}>
               <EditOutlined onClick={this.EditphoneNumber}></EditOutlined>

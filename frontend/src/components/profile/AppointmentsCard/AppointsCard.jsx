@@ -11,6 +11,7 @@ import {
   NodeIndexOutlined,
   DeleteOutlined,
   CalendarOutlined,
+  CheckSquareOutlined,
   StarOutlined,
 } from "@ant-design/icons";
 import moveToTrash from "./moveToTrash";
@@ -52,6 +53,11 @@ class AppointsCard extends Component {
       });
   };
 
+  Check=(key)=>{
+    console.log(key)
+    console.log("Check", key._id);
+
+  }
   // let [showTrack, setshowTrack] = useState("");
   render() {
     return (
@@ -70,12 +76,18 @@ class AppointsCard extends Component {
                     />
                     {/* {showTrack && <Track />} */}
                   </Tooltip>,
+                  <Tooltip placement="bottom" title="Check">
+                  <CheckSquareOutlined
+                    className="appointsIco"
+                    key="track"
+                    onClick={this.Check(this.props.item)}
+                  />
+    
+                </Tooltip>,
                   <Tooltip placement="bottom" title="Delete">
-
-                    
                     <Popconfirm
                     title="Sure to delete?"
-                    onConfirm={() => this.handleDelete(this.props.delete)}
+                    onConfirm={() => this.handleDelete(this.props.item)}
                   >
                     <a>
                       <DeleteOutlined className="edit" />
