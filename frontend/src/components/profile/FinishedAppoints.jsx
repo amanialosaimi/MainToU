@@ -36,6 +36,7 @@ class FinishedAppoints extends Component {
     console.log(currentUser._id)
     console.log(currentUser)
     console.log("@@@@", this.state.Appointments);
+    
     return (
       <div>
         <Row>
@@ -50,14 +51,14 @@ class FinishedAppoints extends Component {
         <Card style={{ width: 300 }}
         actions={[
           <Tooltip placement="bottom" title="Rate">
-            <Star />
+            <Star item={element}/>
           </Tooltip>
         ]}
         >
           <Meta
             avatar={<CalendarOutlined className="AppAvatar" />}
             title={element.title}
-            description={element.description}
+            description={`${element.description}\n${element.rate ? `| ${element.rate}`: `| Not rated yet` }`}
           />
         </Card>
       );

@@ -87,7 +87,7 @@ router.post("/clint/:clintId/:appointmentId", (req, res) => {
 router.put("/clint/:appointmentId/", (req, res) => {
   Appointment.findOneAndUpdate(
     { _id: req.params.appointmentId },
-    { available: false },
+    { isComplate: true },
     (err, result) => {
       if (err) {
         res.json(err);
@@ -171,7 +171,7 @@ router.get("/login/failed", (req, res) => {
 });
 
 // Trash Appointments
-router.get("/:clintId/TrashAppointments", (req, res) => {
+router.get("/:clintId/ComplateAppointments", (req, res) => {
   console.log("GET /clint/NewAppointments");
   Client.findById(req.params.clintId)
     .populate({ path: "app_id", match: { isComplate: true } })

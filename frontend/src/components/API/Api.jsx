@@ -76,7 +76,7 @@ const editTechMan=(info,id)=>{
 return axios.put(`${URL}/api/Admin/TechMan/${id}`,info)
 }
 const TrashAppointments =(id)=>{
-  return axios.get(`${URL}/api/Appoints/${id}/TrashAppointments`)
+  return axios.get(`${URL}/api/Clint/${id}/ComplateAppointments`)
 }
 const updateClientInfo=(info, id)=>{
   return axios.put(`${URL}/api/Clint/profile/${id}`, info);
@@ -90,5 +90,14 @@ const booked=(C_id,A_id)=>{
 const deleteAppointment=(id)=>{
   return axios.delete(`${URL}/api/Appoints/appointments/${id}`);
 }
+
+const CompletedApp=(id)=>{
+  return axios.put(`${URL}/api/Clint/clint/${id}`);
+}
+
+const rate=(rating,id)=>{
+  return axios.put(`${URL}/api/Clint/clint/rate/${id}`,rating)
+}
+
 export {API,  getAllmintsCompany , newMintsCompany , deleteCompany , editCompany , getAllTechMan ,newTechMan, deleteTechMan , editTechMan, addNewAppointment, TrashAppointments ,  getClientInfo,
-  updateClientInfo , gettAllAppointment , booked , currentUser , deleteAppointment};
+  updateClientInfo , gettAllAppointment , booked , currentUser , deleteAppointment , CompletedApp , rate};
