@@ -1,4 +1,4 @@
-import React, {  useState  } from "react";
+import React, { Component, useState , useEffect } from "react";
 import { gettAllAppointment , currentUser} from "../API/Api";
 import Add_appointment from "../forms/Add_appointment";
 import AppointsCard from "./AppointmentsCard/AppointsCard";

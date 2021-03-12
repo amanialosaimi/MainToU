@@ -129,15 +129,15 @@ const Company = () => {
   const [data, setData] = useState("");
 
 //*******====================== */
- useEffect(()=>{
+//  useEffect(()=>{
  getAllmintsCompany()
   .then((response) => {
     setData(response.data)
   })
   .catch((error) => {
     console.log("API ERROR:", error);
-  });}
-  ,[]);
+  });
+// } ,[]);
 
 
   // ****** delete company
@@ -297,7 +297,7 @@ const Company = () => {
     // <div className="TMtable">
     <Form form={form} component={false}>
       <h2>Maintenance Companies</h2>
-      <NewCompany rowClassName ='addBtn'/>
+      <NewCompany rowClassName ='addBtn' />
       <Table 
         components={{
           body: {

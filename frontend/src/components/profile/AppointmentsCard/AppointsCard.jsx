@@ -1,13 +1,17 @@
-import React, { Component } from "react";
-import { Card, Col, Row,  Tooltip , Popconfirm} from "antd";
-import { deleteAppointment } from "../../API/Api";
-
+import React, { Component, useState } from "react";
+import { Card, Col, Row, Divider, Tooltip , Popconfirm} from "antd";
+import { deleteAppointment , CompletedApp } from "../../API/Api";
+import { Route, Link } from "react-router-dom";
+import Add_appointment from "../../forms/Add_appointment";
+import Star from "./StarRating";
+import Track from "./Track";
+import Trash from '../Trash'
 import {
   EditOutlined,
   NodeIndexOutlined,
   DeleteOutlined,
   CalendarOutlined,
-  CheckSquareOutlined,
+  CheckOutlined,
   StarOutlined,
 } from "@ant-design/icons";
 import moveToTrash from "./moveToTrash";
@@ -26,8 +30,8 @@ class AppointsCard extends Component {
 
     this.setState({ order: [...this.state.order, info] });
   
-    console.log("hi from order", info)
-  
+    // console.log("hi from order", info)
+
   }
    handleDelete = (key) => {
   //  console.log(key)
@@ -50,9 +54,16 @@ class AppointsCard extends Component {
       });
   };
 
-  Check=(key)=>{
-    console.log(key)
-    console.log("Check", key._id);
+  Check=()=>{
+    console.log("Check",this.props.item._id)
+    
+    CompletedApp(this.props.item._id)
+    .then((response) => {
+        console.log("Checked Succcfully !!!!!!!!", response);
+      })
+      .catch((error) => {
+        console.log("API ERROR:", error);
+      });
 
   }
   // let [showTrack, setshowTrack] = useState("");
@@ -69,17 +80,12 @@ class AppointsCard extends Component {
                     <NodeIndexOutlined
                       className="appointsIco"
                       key="track"
-                      //onClick={setshowTrack(true)}
+                      // onClick={this.setshowTrack}
                     />
                     {/* {showTrack && <Track />} */}
                   </Tooltip>,
-                  <Tooltip placement="bottom" title="Check">
-                  <CheckSquareOutlined
-                    className="appointsIco"
-                    key="track"
-                    onClick={this.Check(this.props.item)}
-                  />
-    
+                  <Tooltip placement="bottom" title="Completed">
+                  <CheckOutlined onClick={this.Check}/>
                 </Tooltip>,
                   <Tooltip placement="bottom" title="Delete">
                     <Popconfirm

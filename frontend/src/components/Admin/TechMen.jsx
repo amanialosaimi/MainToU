@@ -124,17 +124,18 @@ const TechMen = () => {
   };
 
   const [form] = Form.useForm();
-  const [data, setData] = useState();
+  const [data, setData] = useState("");
   // get all techman
-  useEffect(()=>{
+  // useEffect(()=>{
     getAllTechMan()
      .then((response) => {
        setData(response.data)
      })
      .catch((error) => {
        console.log("API ERROR:", error);
-     });}
-     ,[]);
+     });
+    // }
+    //  ,[]);
   const handleDelete = (key) => {
     const dataSource = [...data];
     setData( dataSource.filter((item) => item._id !== key))
@@ -208,21 +209,14 @@ const TechMen = () => {
       dataIndex: 'fullName',
       width: '25%',
       editable: true,
-      ...getColumnSearchProps('FullName'),
+      ...getColumnSearchProps('fullName'),
     },
-    // {
-    //   title: 'userName',
-    //   dataIndex: 'userName',
-    //   width: '15%',
-    //   editable: true,
-    //   ...getColumnSearchProps('userName'),
-    // },
     {
       title: 'Email',
       dataIndex: 'email',
       width: '15%',
       editable: true,
-      ...getColumnSearchProps('Email'),
+      ...getColumnSearchProps('email'),
     },
     {
       title: 'Phone',
