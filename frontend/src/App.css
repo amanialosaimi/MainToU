@@ -433,6 +433,7 @@ img {
   align-items: center;
 
 }
+/* profile side menu style */
 .sideMinue .ant-menu{
     /* nav menu */
   background-color: rgba(255, 255, 255, 0);
@@ -443,3 +444,50 @@ img {
   
  
 }
+/* profile cards style */
+.ant-card-actions > li > span a:not(.ant-btn), .ant-card-actions > li > span > .anticon{
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  color: #2d5362;
+}
+/* Float four columns side by side */
+.Cardscolumn {
+  float: left;
+  display: grid;
+  width: 28%;
+  height: 30%;
+  padding: 25px 50px;
+}
+
+/* Remove extra left and right margins, due to padding */
+.Cardsrow {
+  margin: -5px;
+}
+
+/* Clear floats after the columns */
+.Cardsrow:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive columns */
+@media screen and (max-width: 600px) {
+  .Cardscolumn {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+  }
+}
+.ant-card-body{
+  border: 1px solid #E4BA4E;
+  border-bottom: 1px solid #2d53627a;
+}
+.ant-card-actions{
+  border-top: transparent;
+  border-bottom: 1px solid #E4BA4E;
+  border-left: 1px solid #E4BA4E;
+  border-right: 1px solid #E4BA4E;
+}
+/* 1px solid #e4b94e00 */

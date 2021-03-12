@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { TrashAppointments , currentUser} from "../API/Api";
+import { TrashAppointments, currentUser } from "../API/Api";
 import { Row, Divider, Card, Col, Tooltip, Empty } from "antd";
 import Star from "./AppointmentsCard/StarRating";
 import {
@@ -29,14 +29,13 @@ class FinishedAppoints extends Component {
       .catch((err) => {
         console.log("ERR: ", err);
       });
-
   }
 
   render() {
-    console.log(currentUser._id)
-    console.log(currentUser)
+    console.log(currentUser._id);
+    console.log(currentUser);
     console.log("@@@@", this.state.Appointments);
-    
+
     return (
       <div>
         <Row>
@@ -46,24 +45,37 @@ class FinishedAppoints extends Component {
         </Row>
 
         <Row className="emptyCont">
-          {this.state.Appointments.length==0 ? <Empty description={<h2>No Appointments yet</h2>}/> : this.state.Appointments.map((element, index) => {
-      return (
-        <Card style={{ width: 300 }}
-        actions={[
-          <Tooltip placement="bottom" title="Rate">
-            <Star item={element}/>
-          </Tooltip>
-        ]}
-        >
-          <Meta
-            avatar={<CalendarOutlined className="AppAvatar" />}
-            title={element.title}
-            description={`${element.description}\n${element.rate ? `| ${element.rate}`: `| Not rated yet` }`}
-          />
-        </Card>
-      );
-    })} 
-
+          {this.state.Appointments.length == 0 ? (
+            <Empty description={<h2>No Appointments Yet!</h2>} />
+          ) : (
+            this.state.Appointments.map((element, index) => {
+              return (
+                <div className="Cardscolumn">
+                  <div className="Cardsrow">
+                    <Card
+                      style={{ width: 300 }}
+                      actions={[
+                        <Tooltip placement="bottom" title="Rate">
+                          <Star item={element} />
+                        </Tooltip>,
+                      ]}
+                    >
+                      <Meta
+                        avatar={<CalendarOutlined className="AppAvatar" />}
+                        title={`Title: ${element.title}`}
+                        description={` Your Issue: ${
+                          element.description
+                        } ${"\n"} Your Rate: ${
+                          element.rate ? ` ${element.rate}` : ` Not Rated Yet!`
+                        }`}
+                        style={{ whiteSpace: "break-spaces" }}
+                      />
+                    </Card>
+                  </div>
+                </div>
+              );
+            })
+          )}
         </Row>
       </div>
     );

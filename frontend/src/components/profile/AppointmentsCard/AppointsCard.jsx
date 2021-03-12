@@ -1,123 +1,116 @@
 import React, { Component, useState } from "react";
-import { Card, Col, Row, Divider, Tooltip , Popconfirm} from "antd";
-import { deleteAppointment , CompletedApp } from "../../API/Api";
-import { Route, Link } from "react-router-dom";
-import Add_appointment from "../../forms/Add_appointment";
-import Star from "./StarRating";
-import Track from "./Track";
-import Trash from '../Trash'
+import { Card, message ,Tooltip, Popconfirm } from "antd";
+import { deleteAppointment, CompletedApp } from "../../API/Api";
 import {
-  EditOutlined,
   NodeIndexOutlined,
   DeleteOutlined,
   CalendarOutlined,
   CheckOutlined,
-  StarOutlined,
 } from "@ant-design/icons";
-import moveToTrash from "./moveToTrash";
+//Confirmation message
+const key = 'updatable';
+const openMessage = () => {
+  message.loading({ content: 'Loading...', key });
+  setTimeout(() => {
+    message.success({ content: 'Your Appointment has been Moved to Trash!', key, duration: 2 });
+  }, 1500);
+};
+const openCompMessage = () => {
+  message.loading({ content: 'Loading...', key });
+  setTimeout(() => {
+    message.success({ content: 'Your Appointment has been Moved to Completed!', key, duration: 2 });
+  }, 1500);
+};
 const { Meta } = Card;
 // class component for display a card
 class AppointsCard extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
-      Appointments:[],
-      show:false
+      Appointments: [],
+      show: false,
     };
   }
-  orderInfo =(info)=>{
-
+  orderInfo = (info) => {
     this.setState({ order: [...this.state.order, info] });
-  
-    // console.log("hi from order", info)
 
-  }
-   handleDelete = (key) => {
-  //  console.log(key)
+    // console.log("hi from order", info)
+  };
+  handleDelete = (key) => {
+    //  console.log(key)
     // setData(dataSource.filter((item) => item._id !== key));
     //console.log("hiiii", key._id);
     // let arr=[]
     // arr.push(key)
-    this.props.trash.push(key)
-    console.log(this.props.trash)
+    this.props.trash.push(key);
+    console.log(this.props.trash);
     var joined = this.state.Appointments.push(key);
-    this.setState({ Appointments: joined })
+    this.setState({ Appointments: joined });
     //console.log(this.state.Appointments)
-    
+
     deleteAppointment(key._id)
       .then((response) => {
-       console.log("Deleted Succcfully !!!!!!!!", response);
+        console.log("Deleted Succcfully !!!!!!!!", response);
       })
       .catch((error) => {
         console.log("API ERROR:", error);
       });
   };
 
-  Check=()=>{
-    console.log("Check",this.props.item._id)
-    
+  Check = () => {
+    console.log("Check", this.props.item._id);
+
     CompletedApp(this.props.item._id)
-    .then((response) => {
+      .then((response) => {
         console.log("Checked Succcfully !!!!!!!!", response);
       })
       .catch((error) => {
         console.log("API ERROR:", error);
       });
-
-  }
+  };
   // let [showTrack, setshowTrack] = useState("");
   render() {
     return (
-      <div>
-        <div>
-          <Row gutter={[16, 16]}>
-            <Col>
-              <Card
-                style={{ width: 300 }}
-                actions={[
-                  <Tooltip placement="bottom" title="Track">
-                    <NodeIndexOutlined
-                      className="appointsIco"
-                      key="track"
-                      // onClick={this.setshowTrack}
-                    />
-                    {/* {showTrack && <Track />} */}
-                  </Tooltip>,
-                  <Tooltip placement="bottom" title="Completed">
-                  <CheckOutlined onClick={this.Check}/>
+      <>
+        <div className="Cardscolumn">
+          <div className="Cardsrow">
+            <Card
+              style={{ width: 300 }}
+              actions={[
+                <Tooltip placement="bottom" title="Track">
+                  <NodeIndexOutlined className="appointsIco" key="track" />
                 </Tooltip>,
-                  <Tooltip placement="bottom" title="Delete">
-                    <Popconfirm
+                <Tooltip placement="bottom" title="Completed">
+                  <CheckOutlined onClick={this.Check
+                  // , openCompMessage()
+                  } />
+                </Tooltip>,
+                <Tooltip placement="bottom" title="Delete">
+                  <Popconfirm
                     title="Sure to delete?"
-                    onConfirm={() => this.handleDelete(this.props.item)}
+                    onConfirm={() => this.handleDelete(this.props.item)
+                       //,openMessage()
+                      }
                   >
                     <a>
                       <DeleteOutlined className="edit" />
                     </a>
                   </Popconfirm>
-
-                  </Tooltip>,
-                ]}
-              >
-                <Meta
-                  avatar={<CalendarOutlined className="AppAvatar" />}
-                  title={this.props.title}
-
-                  description={`${this.props.description} \n ${this.props.time}`}
-
-                />
-              </Card>
-            </Col>
-            <Col></Col>
-          </Row>
+                </Tooltip>,
+              ]}
+            >
+              <Meta
+                avatar={<CalendarOutlined className="AppAvatar" />}
+                title={`Title: ${this.props.title}`}
+                description={`Your issue: ${
+                  this.props.description
+                } ${"\n"} ${`At: ${this.props.time}`}`}
+                style={{ whiteSpace: "break-spaces" }}
+              />
+            </Card>
+          </div>
         </div>
-
-        {/* {this.state.show ? <Trash array={this.state.Appointments}></Trash>: null} */}
-        {/* <moveToTrash array={this.state.Appointments}></moveToTrash>
-        <Trash array={this.state.Appointments}></Trash> */}
-
-      </div>
+      </>
     );
   }
 }

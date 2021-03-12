@@ -11,7 +11,7 @@ const openMessage = () => {
   message.loading({ content: 'Loading...', key});
   setTimeout(() => {
     message.success({ content: 'You are successfully registred!', key, duration: 2 });
-     }, 3000);
+     }, 2000);
 };
 
 
