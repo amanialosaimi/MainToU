@@ -29,11 +29,11 @@ class AppointsCard extends Component {
     this.state = {
       Appointments: [],
       show: false,
+      trash : this.props.trash
     };
   }
   orderInfo = (info) => {
     this.setState({ order: [...this.state.order, info] });
-
     // console.log("hi from order", info)
   };
   handleDelete = (key) => {
@@ -42,27 +42,41 @@ class AppointsCard extends Component {
     //console.log("hiiii", key._id);
     // let arr=[]
     // arr.push(key)
-    this.props.trash.push(key);
-    console.log(this.props.trash);
     var joined = this.state.Appointments.push(key);
     this.setState({ Appointments: joined });
     //console.log(this.state.Appointments)
-
     deleteAppointment(key._id)
       .then((response) => {
-        console.log("Deleted Succcfully !!!!!!!!", response);
+        let a = [...this.state.trash]
+        a.push(key)
+        this.setState({
+        trash: a})
+        console.log(a)
+          if(localStorage.getItem('trash title') == null){
+            localStorage.setItem('trash title', a[a.length-1].title);   
+          }
+          else{
+            localStorage.setItem('trash title', localStorage.getItem('trash title')+' '+a[a.length-1].title);   
+          }
+          if(localStorage.getItem('trash date') == null){
+            localStorage.setItem('trash date', a[a.length-1].date);   
+          }
+          else{
+            localStorage.setItem('trash date', localStorage.getItem('trash date')+' '+a[a.length-1].date);   
+          }
+       console.log("Deleted Succcfully !!!!!!!!", response);
+       openMessage();
       })
       .catch((error) => {
         console.log("API ERROR:", error);
       });
   };
-
   Check = () => {
     console.log("Check", this.props.item._id);
-
     CompletedApp(this.props.item._id)
       .then((response) => {
         console.log("Checked Succcfully !!!!!!!!", response);
+        openCompMessage();
       })
       .catch((error) => {
         console.log("API ERROR:", error);
@@ -81,16 +95,12 @@ class AppointsCard extends Component {
                   <NodeIndexOutlined className="appointsIco" key="track" />
                 </Tooltip>,
                 <Tooltip placement="bottom" title="Completed">
-                  <CheckOutlined onClick={this.Check
-                  // , openCompMessage()
-                  } />
+                  <CheckOutlined onClick={this.Check} />
                 </Tooltip>,
                 <Tooltip placement="bottom" title="Delete">
                   <Popconfirm
                     title="Sure to delete?"
-                    onConfirm={() => this.handleDelete(this.props.item)
-                       //,openMessage()
-                      }
+                    onConfirm={() => this.handleDelete(this.props.item)}
                   >
                     <a>
                       <DeleteOutlined className="edit" />
@@ -114,5 +124,4 @@ class AppointsCard extends Component {
     );
   }
 }
-
 export default AppointsCard;

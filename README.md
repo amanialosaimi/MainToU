@@ -25,7 +25,9 @@ MainToU is the first place to go once a tech issue occurred, it will help any co
 
 ## Project Live Demo
 ***
+Enjoy visiting us, have a nice tour!
  [Live Demo Link](https://maintou-team2.herokuapp.com/)
+> **_NOTE:_**  If you want to see the Admin Page you must login with those credentials: **Email**: as@gmail.com | **Password**: Admin@251
 ## Project Presentation
 ***
  ![Wireframe1](./frontend/src/images/ReadmeImages/barcode.png)

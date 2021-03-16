@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, Input, Modal, Button, Select, DatePicker, Radio } from "antd";
+import { Form, Input, Modal, Button, Select, DatePicker, Radio, Row, Space,Col } from "antd";
 import { addNewAppointment , booked , currentUser} from "../API/Api";
 // import moment from "moment";
 const { Option } = Select;
@@ -39,9 +39,9 @@ const AppointsCollection = ({ visible, createNewAppoint, onCancel }) => {
       htmlType="submit"
     >
       <Form {...layout} form={form} name="nest-messages">
-        <Form.Item
+        
+      <Form.Item
           name={"title"}
-          label="Title:"
           rules={[
             {
               required: true,
@@ -49,7 +49,13 @@ const AppointsCollection = ({ visible, createNewAppoint, onCancel }) => {
             },
           ]}
         >
-          <Input />
+           <Select  defaultValue="Select issue type: ">
+            <Option value="Devices">Device issue</Option>
+            <Option value="Networks">Network issue</Option>
+            <Option value="Softwares">Software issue</Option>
+            <Option value="cables">Cables issue</Option>
+            <Option value="OS">OS issue</Option>
+          </Select>
         </Form.Item>
         <Form.Item
           rules={[
@@ -61,7 +67,7 @@ const AppointsCollection = ({ visible, createNewAppoint, onCancel }) => {
           name={"description"}
           label="What is your issue? "
         >
-          <Input.TextArea />
+          <Input.TextArea placeholder= 'Write your issue in details .. ' />
         </Form.Item>
         <Form.Item
           rules={[
@@ -96,13 +102,26 @@ const AppointsCollection = ({ visible, createNewAppoint, onCancel }) => {
             }}
           />
         </Form.Item>
-        <Form.Item name={"time"} label="time: ">
+        <Form.Item 
+        rules={[
+          {
+            required: true,
+            message: "Time is required",
+          },
+        ]}
+        name={"time"} label="Time: ">
           <Input placeholder='Ex: 9:00'/>
           </Form.Item>
-          <Form.Item name="radio_group" label="Chose: ">
+          <Form.Item rules={[
+          {
+            required: true,
+            message: "AM or PM is required",
+          },
+        ]}
+        name="radio_group" label="Choose: ">
             <Radio.Group>
-              <Radio value="am">am</Radio>
-              <Radio value="pm">pm</Radio>
+              <Radio value="am">AM</Radio>
+              <Radio value="pm">PM</Radio>
             </Radio.Group>
           </Form.Item>
       </Form>

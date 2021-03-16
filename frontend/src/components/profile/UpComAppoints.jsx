@@ -8,7 +8,7 @@ import { Row, Col , Divider, Empty} from "antd";
 
 function UpComAppoints(props) {
   let [ ComAppoints,setComAppoints] = useState('');
-
+useEffect(() => {
       gettAllAppointment(currentUser._id)
       .then((response) => {
         console.log("DATA: ", response.data);
@@ -19,7 +19,7 @@ function UpComAppoints(props) {
       .catch((err) => {
         console.log("ERR: ", err);
       });
-
+}, []);
 
        
     return (

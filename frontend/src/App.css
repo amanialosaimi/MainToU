@@ -491,3 +491,7 @@ img {
   border-right: 1px solid #E4BA4E;
 }
 /* 1px solid #e4b94e00 */
+/* add appointments form */
+.titleSelect{
+  padding-left: -10px;
+}

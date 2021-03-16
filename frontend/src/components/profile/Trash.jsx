@@ -14,18 +14,32 @@ const columns = [
     },
   },
 ];
+let data = [
+]
+if(localStorage.getItem('trash title')== null){
+  data.push('')
+}
+else{
+  data.pop()
+  let title1 =localStorage.getItem('trash title').split(' ')
+  let  date1 = localStorage.getItem('trash date').split(' ')
+  title1.map((item,i)=>{
+    data.push({
+      title:item,
+      date : date1[i]
+    })
+  })
+  console.log(title1[0])
+  console.log(title1[1])
+  }
 class Trash extends Component {
   constructor(props) {
     super(props);
-    console.log('TR',props.trash)
     this.state = {
-      appointments:this.props.array
-    };
+      appointments:this.props.array,
+      };
   }
-  
 render (){
-  console.log("delete11111",this.props.array)
- 
   return (
     <div>
       <Row>
@@ -39,12 +53,11 @@ render (){
           size="middle"
           style={{textAlign:"center"}}
            columns={columns}
-           dataSource={this.props.trash}
+           dataSource={data}
         />
       </div>
     </div>
   );
 }
 }
-
 export default Trash;
