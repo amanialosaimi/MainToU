@@ -495,3 +495,7 @@ img {
 .titleSelect{
   padding-left: -10px;
 }
+
+.ant-select-single:not(.ant-select-customize-input) .ant-select-selector{
+  padding: 0 5px
+}

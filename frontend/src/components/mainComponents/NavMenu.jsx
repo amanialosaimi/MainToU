@@ -3,7 +3,7 @@ import {useState} from "react";
 import { Button, Menu , message } from "antd";
 import { Link } from "react-router-dom";
 import "../../App.css";
-import Login from "./Login"
+import Login from "../forms/Login"
 import {API} from '../API/Api'
 function NavMenu() {
   const key = 'updatable';

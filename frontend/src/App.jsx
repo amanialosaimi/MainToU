@@ -11,7 +11,7 @@ import UpComAppoints from "./components/profile/UpComAppoints";
 import FinishedAppoints from "./components/profile/FinishedAppoints";
 import Trash from "./components/profile/Trash";
 import ProfileInfo from "./components/profile/ProfileInfo";
-import Register from "./components/mainComponents/Register"
+import Register from "./components/forms/Register"
 import NavMenu from "./components/mainComponents/NavMenu"
 import moveToTrash from './components/profile/AppointmentsCard/moveToTrash'
 import ProfileTechmen from "./components/ProfileTechmen/Profile";

@@ -49,7 +49,7 @@ const AppointsCollection = ({ visible, createNewAppoint, onCancel }) => {
             },
           ]}
         >
-           <Select  defaultValue="Select issue type: ">
+           <Select  defaultValue="Select issue type ">
             <Option value="Devices">Device issue</Option>
             <Option value="Networks">Network issue</Option>
             <Option value="Softwares">Software issue</Option>
