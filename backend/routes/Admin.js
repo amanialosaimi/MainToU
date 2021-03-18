@@ -171,6 +171,6 @@ Admin.insertMany(newAdmin, (err, newAdmin) => {
   if (err) {
     console.log(err);
   }
-  console.log('added provided vampire data', newAdmin);
+  console.log('added provided admin data', newAdmin);
   });
 module.exports = router;
